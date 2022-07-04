@@ -1,0 +1,16 @@
+
+ACGAAAUCGAAACGCCCAUUUUGU
+seq(1,a). seq(2,c). seq(3,g). seq(4,a). seq(5,a). seq(6,a).
+seq(7,u). seq(8,c). seq(9,g). seq(10,a). seq(11,a). seq(12,a).
+seq(13,c). seq(14,g). seq(15,c). seq(16,c). seq(17,c). seq(18,a).
+seq(19,u). seq(20,u). seq(21,u). seq(22,u). seq(23,g). seq(24,u).
+
+CCAAGAUGUGGAGGCUGGGGUCAG
+seq(1,c). seq(2,c). seq(3,a). seq(4,a). seq(5,g). seq(6,a).
+seq(7,u). seq(8,g). seq(9,u). seq(10,g). seq(11,g). seq(12,a).
+seq(13,g). seq(14,g). seq(15,c). seq(16,u). seq(17,g). seq(18,g).
+seq(19,g). seq(20,g). seq(21,u). seq(22,c). seq(23,a). seq(24,g).
+
+
+AGUCCA
+seq(1,a). seq(2,g). seq(3,u). seq(4,c). seq(5,c). seq(6,a).		

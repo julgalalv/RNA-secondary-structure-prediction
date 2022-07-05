@@ -211,14 +211,64 @@ def generate_image():
     print('VARNA CONNECTION STRING: ', connections)
     print('='*CONSOLE_LINE_LENGTH_, '\n')
 
+    # print stats
+    print_statistics(pairing_dict)
+
     # image output name and path
     image_name = SEQUENCE+'_'+str(ENERGY_FUNC)+'.png'
     image_file = os.path.join(GENERATED_IMAGES_DIR,image_name)
+    image_title = "{}_E{}".format(SEQUENCE,ENERGY_FUNC)
     print('RUNNING VARNA. GENERATING IMAGE...')
     # VARNA command
-    cmd = 'java -cp {} fr.orsay.lri.varna.applications.VARNAcmd -sequenceDBN {} -structureDBN {} -o {}'.format(VARNA_JAR,SEQUENCE,connections,image_file)
+    base_cmd = 'java -cp {} fr.orsay.lri.varna.applications.VARNAcmd'.format(VARNA_JAR)
+    params = ' -sequenceDBN {} -structureDBN {} -title {} -o {}'.format(SEQUENCE,connections,image_title,image_file)
     # VARNA applet run
-    os.system(cmd)
-        
+    os.system(base_cmd + params)
+
+def print_statistics(pairing_dictionary):
+    """
+    Prints information about the sequence and the predicted
+    secondary structure
+    """
+    sequence_dict = dict(enumerate(SEQUENCE, start=1))
+    len_seq = len(SEQUENCE)
+    pairings = len(pairing_dictionary)
+    paired_bases = pairings * 2
+    cg_pairings = 0
+    au_pairings = 0
+    gu_pairings = 0
+
+    for k,v in pairing_dictionary.items():
+        base_1 = sequence_dict[k]
+        base_2 = sequence_dict[v]
+        pairing = set([base_1,base_2])
+        if pairing == set(['C','G']): cg_pairings += 1  
+        if pairing == set(['A','U']): au_pairings += 1  
+        if pairing == set(['G','U']): gu_pairings += 1  
+    cg_prop = cg_pairings / pairings
+    au_prop = au_pairings / pairings
+    gu_prop = gu_pairings / pairings
+
+    stats = {
+        'SEQUENCE LENGTH:':[len_seq,'-'],
+        'NUM. PAIRINGS:':[pairings,'-'],
+        'NUM. PAIRED BASES:':[paired_bases,'-'],
+        'NUM. CG PAIRINGS:':[cg_pairings,'-'],
+        'NUM. AU PAIRINGS:':[au_pairings,'-'],
+        'NUM. GU PAIRINGS:':[gu_pairings,'-'],
+        'PROP. CG PAIRINGS:':[cg_prop, '0.53'],
+        'PROP. AU PAIRINGS:':[au_prop, '0.35'],
+        'PROP. GU PAIRINGS:':[gu_prop, '0.12'],
+
+    }
+    (print('STATS OF SEQUENCE: E{} - {}'.format(ENERGY_FUNC,SEQUENCE)))
+    print('='*CONSOLE_LINE_LENGTH_)
+    print ("{:<20} {:<20} {:<20}".format('', 'PREDICTED', 'EXPECTED'))
+    for k, v in stats.items():
+        pred, expected = v
+        print ("{:<20} {:<20.2f} {:<20}".format(k, pred, expected))
+    print('='*CONSOLE_LINE_LENGTH_,'\n')
+
+
 if __name__ == '__main__':
     main()

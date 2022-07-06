@@ -1,0 +1,17 @@
+STATS OF SEQUENCE: E2 - ACGAAAUCGAAACGCCCAUUUUGU
+================================================================================
+PAIRING DICTIONARY:                      {1: 24, 19: 23, 14: 16, 9: 13, 3: 8, 4: 7} 
+SEQUENCE STRING:                         ACGAAAUCGAAACGCCCAUUUUGU                 
+PARENTHESIS AND DOTS CONNECTION STRING:  (.((..))(...)(.)..(...))                 
+================================================================================
+                     PREDICTED            EXPECTED            
+SEQUENCE LENGTH:     24.00                -                   
+NUM. PAIRINGS:       6.00                 -                   
+NUM. PAIRED BASES:   12.00                -                   
+NUM. CG PAIRINGS:    3.00                 -                   
+NUM. AU PAIRINGS:    2.00                 -                   
+NUM. GU PAIRINGS:    1.00                 -                   
+PROP.  CG PAIRINGS:  0.50                 0.53                
+PROP.  AU PAIRINGS:  0.33                 0.35                
+PROP.  GU PAIRINGS:  0.17                 0.12                
+BEST C1 FOUND:       50.00                -                   

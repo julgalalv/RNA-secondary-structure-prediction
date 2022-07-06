@@ -2,40 +2,34 @@ clingo version 5.4.0
 Reading from clingo\rna_ss_prediction_E2.lp
 Solving...
 Answer: 1
-seq(1,a) seq(2,c) seq(3,c) seq(4,u) seq(5,g) seq(6,g) seq(7,u) seq(8,a) seq(9,u) seq(10,c) seq(11,g) seq(12,a) seq(13,c) seq(14,a) contacts(0) energy2(1400)
+seq(1,a) seq(2,c) seq(3,c) seq(4,u) seq(5,g) seq(6,g) seq(7,u) seq(8,a) seq(9,u) seq(10,c) seq(11,g) seq(12,a) seq(13,c) seq(14,a) contacts(0) energy2(1400) c1(100)
 Optimization: 1400
 Answer: 2
-seq(1,a) seq(2,c) seq(3,c) seq(4,u) seq(5,g) seq(6,g) seq(7,u) seq(8,a) seq(9,u) seq(10,c) seq(11,g) seq(12,a) seq(13,c) seq(14,a) pairing(5,7) pairing(7,5) contacts(2) energy2(1376)
-Optimization: 1376
+seq(1,a) seq(2,c) seq(3,c) seq(4,u) seq(5,g) seq(6,g) seq(7,u) seq(8,a) seq(9,u) seq(10,c) seq(11,g) seq(12,a) seq(13,c) seq(14,a) contacts(0) energy2(1120) c1(80)
+Optimization: 1120
 Answer: 3
-seq(1,a) seq(2,c) seq(3,c) seq(4,u) seq(5,g) seq(6,g) seq(7,u) seq(8,a) seq(9,u) seq(10,c) seq(11,g) seq(12,a) seq(13,c) seq(14,a) pairing(9,11) pairing(11,9) pairing(4,6) pairing(6,4) contacts(4) energy2(1352)
-Optimization: 1352
+seq(1,a) seq(2,c) seq(3,c) seq(4,u) seq(5,g) seq(6,g) seq(7,u) seq(8,a) seq(9,u) seq(10,c) seq(11,g) seq(12,a) seq(13,c) seq(14,a) contacts(0) energy2(700) c1(50)
+Optimization: 700
 Answer: 4
-seq(1,a) seq(2,c) seq(3,c) seq(4,u) seq(5,g) seq(6,g) seq(7,u) seq(8,a) seq(9,u) seq(10,c) seq(11,g) seq(12,a) seq(13,c) seq(14,a) pairing(1,9) pairing(9,1) pairing(4,6) pairing(6,4) contacts(4) energy2(1212)
-Optimization: 1212
+seq(1,a) seq(2,c) seq(3,c) seq(4,u) seq(5,g) seq(6,g) seq(7,u) seq(8,a) seq(9,u) seq(10,c) seq(11,g) seq(12,a) seq(13,c) seq(14,a) contacts(0) energy2(560) c1(40)
+Optimization: 560
 Answer: 5
-seq(1,a) seq(2,c) seq(3,c) seq(4,u) seq(5,g) seq(6,g) seq(7,u) seq(8,a) seq(9,u) seq(10,c) seq(11,g) seq(12,a) seq(13,c) seq(14,a) pairing(9,14) pairing(14,9) pairing(1,7) pairing(7,1) pairing(4,6) pairing(6,4) contacts(6) energy2(1118)
-Optimization: 1118
+seq(1,a) seq(2,c) seq(3,c) seq(4,u) seq(5,g) seq(6,g) seq(7,u) seq(8,a) seq(9,u) seq(10,c) seq(11,g) seq(12,a) seq(13,c) seq(14,a) pairing(4,11) pairing(11,4) pairing(5,9) pairing(9,5) contacts(4) c1(40) energy2(336)
+Optimization: 336
 Answer: 6
-seq(1,a) seq(2,c) seq(3,c) seq(4,u) seq(5,g) seq(6,g) seq(7,u) seq(8,a) seq(9,u) seq(10,c) seq(11,g) seq(12,a) seq(13,c) seq(14,a) pairing(7,14) pairing(14,7) pairing(2,6) pairing(6,2) contacts(4) energy2(1060)
-Optimization: 1060
+seq(1,a) seq(2,c) seq(3,c) seq(4,u) seq(5,g) seq(6,g) seq(7,u) seq(8,a) seq(9,u) seq(10,c) seq(11,g) seq(12,a) seq(13,c) seq(14,a) pairing(11,13) pairing(13,11) pairing(1,9) pairing(9,1) pairing(3,6) pairing(6,3) contacts(6) c1(50) energy2(146)
+Optimization: 146
 Answer: 7
-seq(1,a) seq(2,c) seq(3,c) seq(4,u) seq(5,g) seq(6,g) seq(7,u) seq(8,a) seq(9,u) seq(10,c) seq(11,g) seq(12,a) seq(13,c) seq(14,a) pairing(7,14) pairing(14,7) pairing(11,13) pairing(13,11) pairing(2,6) pairing(6,2) pairing(3,5) pairing(5,3) contacts(8) energy2(776)
-Optimization: 776
+seq(1,a) seq(2,c) seq(3,c) seq(4,u) seq(5,g) seq(6,g) seq(7,u) seq(8,a) seq(9,u) seq(10,c) seq(11,g) seq(12,a) seq(13,c) seq(14,a) pairing(11,13) pairing(13,11) pairing(1,9) pairing(9,1) pairing(3,6) pairing(6,3) contacts(6) c1(40) energy2(86)
+Optimization: 86
 Answer: 8
-seq(1,a) seq(2,c) seq(3,c) seq(4,u) seq(5,g) seq(6,g) seq(7,u) seq(8,a) seq(9,u) seq(10,c) seq(11,g) seq(12,a) seq(13,c) seq(14,a) pairing(7,14) pairing(14,7) pairing(9,12) pairing(12,9) pairing(2,6) pairing(6,2) pairing(3,5) pairing(5,3) contacts(8) energy2(720)
-Optimization: 720
-Answer: 9
-seq(1,a) seq(2,c) seq(3,c) seq(4,u) seq(5,g) seq(6,g) seq(7,u) seq(8,a) seq(9,u) seq(10,c) seq(11,g) seq(12,a) seq(13,c) seq(14,a) pairing(7,14) pairing(14,7) pairing(9,11) pairing(11,9) pairing(2,6) pairing(6,2) pairing(3,5) pairing(5,3) contacts(8) energy2(704)
-Optimization: 704
-Answer: 10
-seq(1,a) seq(2,c) seq(3,c) seq(4,u) seq(5,g) seq(6,g) seq(7,u) seq(8,a) seq(9,u) seq(10,c) seq(11,g) seq(12,a) seq(13,c) seq(14,a) pairing(9,14) pairing(14,9) pairing(11,13) pairing(13,11) pairing(1,7) pairing(7,1) pairing(2,6) pairing(6,2) pairing(3,5) pairing(5,3) contacts(10) energy2(520)
-Optimization: 520
+seq(1,a) seq(2,c) seq(3,c) seq(4,u) seq(5,g) seq(6,g) seq(7,u) seq(8,a) seq(9,u) seq(10,c) seq(11,g) seq(12,a) seq(13,c) seq(14,a) pairing(9,14) pairing(14,9) pairing(11,13) pairing(13,11) pairing(1,7) pairing(7,1) pairing(2,6) pairing(6,2) pairing(3,5) pairing(5,3) contacts(10) c1(70) energy2(80)
+Optimization: 80
 OPTIMUM FOUND
 
-Models       : 10
+Models       : 8
   Optimum    : yes
-Optimization : 520
+Optimization : 80
 Calls        : 1
-Time         : 0.095s (Solving: 0.02s 1st Model: 0.00s Unsat: 0.02s)
-CPU Time     : 0.094s
+Time         : 0.430s (Solving: 0.14s 1st Model: 0.03s Unsat: 0.05s)
+CPU Time     : 0.422s

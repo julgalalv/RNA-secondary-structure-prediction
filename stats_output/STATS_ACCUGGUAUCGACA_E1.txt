@@ -1,0 +1,16 @@
+STATS OF SEQUENCE: E1 - ACCUGGUAUCGACA
+================================================================================
+PAIRING DICTIONARY:                      {9: 14, 11: 13, 1: 7, 2: 6, 3: 5}        
+SEQUENCE STRING:                         ACCUGGUAUCGACA                           
+PARENTHESIS AND DOTS CONNECTION STRING:  (((.))).(.(.))                           
+================================================================================
+                     PREDICTED            EXPECTED            
+SEQUENCE LENGTH:     14.00                -                   
+NUM. PAIRINGS:       5.00                 -                   
+NUM. PAIRED BASES:   10.00                -                   
+NUM. CG PAIRINGS:    3.00                 -                   
+NUM. AU PAIRINGS:    2.00                 -                   
+NUM. GU PAIRINGS:    0.00                 -                   
+PROP.  CG PAIRINGS:  0.60                 0.53                
+PROP.  AU PAIRINGS:  0.40                 0.35                
+PROP.  GU PAIRINGS:  0.00                 0.12                

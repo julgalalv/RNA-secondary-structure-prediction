@@ -1,0 +1,16 @@
+STATS OF SEQUENCE: E1 - AGUCCA
+================================================================================
+PAIRING DICTIONARY:                      {1: 3}                                   
+SEQUENCE STRING:                         AGUCCA                                   
+PARENTHESIS AND DOTS CONNECTION STRING:  (.)...                                   
+================================================================================
+                     PREDICTED            EXPECTED            
+SEQUENCE LENGTH:     6.00                 -                   
+NUM. PAIRINGS:       1.00                 -                   
+NUM. PAIRED BASES:   2.00                 -                   
+NUM. CG PAIRINGS:    0.00                 -                   
+NUM. AU PAIRINGS:    1.00                 -                   
+NUM. GU PAIRINGS:    0.00                 -                   
+PROP.  CG PAIRINGS:  0.00                 0.53                
+PROP.  AU PAIRINGS:  1.00                 0.35                
+PROP.  GU PAIRINGS:  0.00                 0.12                

@@ -1,0 +1,20 @@
+clingo version 5.4.0
+Reading from clingo\rna_ss_prediction_E2_0.lp
+Solving...
+Answer: 1
+seq(1,a) seq(2,c) seq(3,c) seq(4,u) seq(5,g) seq(6,g) seq(7,u) seq(8,a) seq(9,u) seq(10,c) seq(11,g) seq(12,a) seq(13,c) seq(14,a) contacts(0) energy2(14)
+Optimization: -14
+Answer: 2
+seq(1,a) seq(2,c) seq(3,c) seq(4,u) seq(5,g) seq(6,g) seq(7,u) seq(8,a) seq(9,u) seq(10,c) seq(11,g) seq(12,a) seq(13,c) seq(14,a) pairing(7,14) pairing(14,7) pairing(9,12) pairing(12,9) pairing(1,4) pairing(4,1) contacts(6) energy2(419)
+Optimization: -419
+Answer: 3
+seq(1,a) seq(2,c) seq(3,c) seq(4,u) seq(5,g) seq(6,g) seq(7,u) seq(8,a) seq(9,u) seq(10,c) seq(11,g) seq(12,a) seq(13,c) seq(14,a) pairing(9,11) pairing(11,9) pairing(5,7) pairing(7,5) pairing(1,4) pairing(4,1) contacts(6) energy2(439)
+Optimization: -439
+OPTIMUM FOUND
+
+Models       : 3
+  Optimum    : yes
+Optimization : -439
+Calls        : 1
+Time         : 0.093s (Solving: 0.03s 1st Model: 0.00s Unsat: 0.03s)
+CPU Time     : 0.078s

@@ -1,0 +1,16 @@
+STATS OF SEQUENCE: E1 - CCAAGAUGUGGAGGCUGGGGUCAG
+================================================================================
+PAIRING DICTIONARY:                      {22: 24, 12: 21, 15: 20, 16: 19, 1: 11, 2: 10, 3: 9, 4: 7} 
+SEQUENCE STRING:                         CCAAGAUGUGGAGGCUGGGGUCAG                 
+PARENTHESIS AND DOTS CONNECTION STRING:  ((((..).)))(..((..)))(.)                 
+================================================================================
+                     PREDICTED            EXPECTED            
+SEQUENCE LENGTH:     24.00                -                   
+NUM. PAIRINGS:       8.00                 -                   
+NUM. PAIRED BASES:   16.00                -                   
+NUM. CG PAIRINGS:    4.00                 -                   
+NUM. AU PAIRINGS:    3.00                 -                   
+NUM. GU PAIRINGS:    1.00                 -                   
+PROP.  CG PAIRINGS:  0.50                 0.53                
+PROP.  AU PAIRINGS:  0.38                 0.35                
+PROP.  GU PAIRINGS:  0.12                 0.12                

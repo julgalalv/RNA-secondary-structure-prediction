@@ -21,8 +21,8 @@ pseudo_knots(allow_pseudo_knots).
 #include "input/rna_ss_input.lp".
 
 %% domain predicates
-sequence_index(X) :- seq(X,_).									%R1
-sequence_base(B) :- seq(_,B).									%R2
+sequence_index(X) :- seq(X,_).									      %R1
+sequence_base(B) :- seq(_,B).									         %R2
 %%% Definition of the pairing function
 0 {pairing(X,Y):sequence_index(Y)} 1 :- sequence_index(X).		%R3
 

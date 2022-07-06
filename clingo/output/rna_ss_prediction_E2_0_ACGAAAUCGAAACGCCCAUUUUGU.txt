@@ -1,0 +1,47 @@
+clingo version 5.4.0
+Reading from clingo\rna_ss_prediction_E2_0.lp
+Solving...
+Answer: 1
+seq(1,a) seq(2,c) seq(3,g) seq(4,a) seq(5,a) seq(6,a) seq(7,u) seq(8,c) seq(9,g) seq(10,a) seq(11,a) seq(12,a) seq(13,c) seq(14,g) seq(15,c) seq(16,c) seq(17,c) seq(18,a) seq(19,u) seq(20,u) seq(21,u) seq(22,u) seq(23,g) seq(24,u) contacts(0) energy2(24)
+Optimization: -24
+Answer: 2
+seq(1,a) seq(2,c) seq(3,g) seq(4,a) seq(5,a) seq(6,a) seq(7,u) seq(8,c) seq(9,g) seq(10,a) seq(11,a) seq(12,a) seq(13,c) seq(14,g) seq(15,c) seq(16,c) seq(17,c) seq(18,a) seq(19,u) seq(20,u) seq(21,u) seq(22,u) seq(23,g) seq(24,u) pairing(11,24) pairing(24,11) pairing(16,23) pairing(23,16) pairing(18,22) pairing(22,18) contacts(6) energy2(249)
+Optimization: -249
+Answer: 3
+seq(1,a) seq(2,c) seq(3,g) seq(4,a) seq(5,a) seq(6,a) seq(7,u) seq(8,c) seq(9,g) seq(10,a) seq(11,a) seq(12,a) seq(13,c) seq(14,g) seq(15,c) seq(16,c) seq(17,c) seq(18,a) seq(19,u) seq(20,u) seq(21,u) seq(22,u) seq(23,g) seq(24,u) pairing(14,24) pairing(24,14) pairing(16,23) pairing(23,16) contacts(4) energy2(274)
+Optimization: -274
+Answer: 4
+seq(1,a) seq(2,c) seq(3,g) seq(4,a) seq(5,a) seq(6,a) seq(7,u) seq(8,c) seq(9,g) seq(10,a) seq(11,a) seq(12,a) seq(13,c) seq(14,g) seq(15,c) seq(16,c) seq(17,c) seq(18,a) seq(19,u) seq(20,u) seq(21,u) seq(22,u) seq(23,g) seq(24,u) pairing(14,24) pairing(24,14) pairing(16,23) pairing(23,16) pairing(18,22) pairing(22,18) contacts(6) energy2(349)
+Optimization: -349
+Answer: 5
+seq(1,a) seq(2,c) seq(3,g) seq(4,a) seq(5,a) seq(6,a) seq(7,u) seq(8,c) seq(9,g) seq(10,a) seq(11,a) seq(12,a) seq(13,c) seq(14,g) seq(15,c) seq(16,c) seq(17,c) seq(18,a) seq(19,u) seq(20,u) seq(21,u) seq(22,u) seq(23,g) seq(24,u) pairing(14,24) pairing(24,14) pairing(16,23) pairing(23,16) pairing(7,9) pairing(9,7) contacts(6) energy2(449)
+Optimization: -449
+Answer: 6
+seq(1,a) seq(2,c) seq(3,g) seq(4,a) seq(5,a) seq(6,a) seq(7,u) seq(8,c) seq(9,g) seq(10,a) seq(11,a) seq(12,a) seq(13,c) seq(14,g) seq(15,c) seq(16,c) seq(17,c) seq(18,a) seq(19,u) seq(20,u) seq(21,u) seq(22,u) seq(23,g) seq(24,u) pairing(14,24) pairing(24,14) pairing(16,23) pairing(23,16) pairing(18,22) pairing(22,18) pairing(7,9) pairing(9,7) contacts(8) energy2(524)
+Optimization: -524
+Answer: 7
+seq(1,a) seq(2,c) seq(3,g) seq(4,a) seq(5,a) seq(6,a) seq(7,u) seq(8,c) seq(9,g) seq(10,a) seq(11,a) seq(12,a) seq(13,c) seq(14,g) seq(15,c) seq(16,c) seq(17,c) seq(18,a) seq(19,u) seq(20,u) seq(21,u) seq(22,u) seq(23,g) seq(24,u) pairing(1,24) pairing(24,1) pairing(2,23) pairing(23,2) pairing(3,20) pairing(20,3) pairing(4,19) pairing(19,4) pairing(9,17) pairing(17,9) pairing(14,16) pairing(16,14) pairing(5,7) pairing(7,5) contacts(14) energy2(649)
+Optimization: -649
+Answer: 8
+seq(1,a) seq(2,c) seq(3,g) seq(4,a) seq(5,a) seq(6,a) seq(7,u) seq(8,c) seq(9,g) seq(10,a) seq(11,a) seq(12,a) seq(13,c) seq(14,g) seq(15,c) seq(16,c) seq(17,c) seq(18,a) seq(19,u) seq(20,u) seq(21,u) seq(22,u) seq(23,g) seq(24,u) pairing(1,24) pairing(24,1) pairing(21,23) pairing(23,21) pairing(3,20) pairing(20,3) pairing(4,19) pairing(19,4) pairing(9,17) pairing(17,9) pairing(14,16) pairing(16,14) pairing(5,7) pairing(7,5) contacts(14) energy2(749)
+Optimization: -749
+Answer: 9
+seq(1,a) seq(2,c) seq(3,g) seq(4,a) seq(5,a) seq(6,a) seq(7,u) seq(8,c) seq(9,g) seq(10,a) seq(11,a) seq(12,a) seq(13,c) seq(14,g) seq(15,c) seq(16,c) seq(17,c) seq(18,a) seq(19,u) seq(20,u) seq(21,u) seq(22,u) seq(23,g) seq(24,u) pairing(1,24) pairing(24,1) pairing(21,23) pairing(23,21) pairing(3,20) pairing(20,3) pairing(14,19) pairing(19,14) pairing(9,13) pairing(13,9) pairing(5,7) pairing(7,5) contacts(12) energy2(774)
+Optimization: -774
+Answer: 10
+seq(1,a) seq(2,c) seq(3,g) seq(4,a) seq(5,a) seq(6,a) seq(7,u) seq(8,c) seq(9,g) seq(10,a) seq(11,a) seq(12,a) seq(13,c) seq(14,g) seq(15,c) seq(16,c) seq(17,c) seq(18,a) seq(19,u) seq(20,u) seq(21,u) seq(22,u) seq(23,g) seq(24,u) pairing(1,24) pairing(24,1) pairing(2,23) pairing(23,2) pairing(3,22) pairing(22,3) pairing(6,21) pairing(21,6) pairing(10,20) pairing(20,10) pairing(11,19) pairing(19,11) pairing(14,16) pairing(16,14) pairing(7,9) pairing(9,7) contacts(16) energy2(824)
+Optimization: -824
+Answer: 11
+seq(1,a) seq(2,c) seq(3,g) seq(4,a) seq(5,a) seq(6,a) seq(7,u) seq(8,c) seq(9,g) seq(10,a) seq(11,a) seq(12,a) seq(13,c) seq(14,g) seq(15,c) seq(16,c) seq(17,c) seq(18,a) seq(19,u) seq(20,u) seq(21,u) seq(22,u) seq(23,g) seq(24,u) pairing(1,24) pairing(24,1) pairing(2,23) pairing(23,2) pairing(3,22) pairing(22,3) pairing(4,21) pairing(21,4) pairing(9,20) pairing(20,9) pairing(14,19) pairing(19,14) pairing(5,7) pairing(7,5) contacts(14) energy2(849)
+Optimization: -849
+Answer: 12
+seq(1,a) seq(2,c) seq(3,g) seq(4,a) seq(5,a) seq(6,a) seq(7,u) seq(8,c) seq(9,g) seq(10,a) seq(11,a) seq(12,a) seq(13,c) seq(14,g) seq(15,c) seq(16,c) seq(17,c) seq(18,a) seq(19,u) seq(20,u) seq(21,u) seq(22,u) seq(23,g) seq(24,u) pairing(3,24) pairing(24,3) pairing(7,23) pairing(23,7) pairing(9,22) pairing(22,9) pairing(11,21) pairing(21,11) pairing(12,20) pairing(20,12) pairing(14,19) pairing(19,14) contacts(12) energy2(874)
+Optimization: -874
+OPTIMUM FOUND
+
+Models       : 12
+  Optimum    : yes
+Optimization : -874
+Calls        : 1
+Time         : 193.223s (Solving: 192.14s 1st Model: 0.04s Unsat: 175.87s)
+CPU Time     : 193.172s

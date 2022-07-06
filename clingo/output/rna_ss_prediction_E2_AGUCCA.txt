@@ -2,19 +2,31 @@ clingo version 5.4.0
 Reading from clingo\rna_ss_prediction_E2.lp
 Solving...
 Answer: 1
-seq(1,a) seq(2,g) seq(3,u) seq(4,c) seq(5,c) seq(6,a) contacts(0) energy2(600)
+seq(1,a) seq(2,g) seq(3,u) seq(4,c) seq(5,c) seq(6,a) contacts(0) energy2(600) c1(100)
 Optimization: 600
 Answer: 2
-seq(1,a) seq(2,g) seq(3,u) seq(4,c) seq(5,c) seq(6,a) pairing(3,6) pairing(6,3) contacts(2) energy2(530)
-Optimization: 530
+seq(1,a) seq(2,g) seq(3,u) seq(4,c) seq(5,c) seq(6,a) contacts(0) energy2(480) c1(80)
+Optimization: 480
 Answer: 3
-seq(1,a) seq(2,g) seq(3,u) seq(4,c) seq(5,c) seq(6,a) pairing(2,4) pairing(4,2) contacts(2) energy2(494)
-Optimization: 494
+seq(1,a) seq(2,g) seq(3,u) seq(4,c) seq(5,c) seq(6,a) contacts(0) energy2(360) c1(60)
+Optimization: 360
+Answer: 4
+seq(1,a) seq(2,g) seq(3,u) seq(4,c) seq(5,c) seq(6,a) contacts(0) energy2(240) c1(40)
+Optimization: 240
+Answer: 5
+seq(1,a) seq(2,g) seq(3,u) seq(4,c) seq(5,c) seq(6,a) pairing(2,4) pairing(4,2) contacts(2) c1(50) energy2(182)
+Optimization: 182
+Answer: 6
+seq(1,a) seq(2,g) seq(3,u) seq(4,c) seq(5,c) seq(6,a) pairing(3,6) pairing(6,3) contacts(2) c1(40) energy2(158)
+Optimization: 158
+Answer: 7
+seq(1,a) seq(2,g) seq(3,u) seq(4,c) seq(5,c) seq(6,a) pairing(2,5) pairing(5,2) contacts(2) c1(40) energy2(122)
+Optimization: 122
 OPTIMUM FOUND
 
-Models       : 3
+Models       : 7
   Optimum    : yes
-Optimization : 494
+Optimization : 122
 Calls        : 1
-Time         : 0.009s (Solving: 0.00s 1st Model: 0.00s Unsat: 0.00s)
-CPU Time     : 0.000s
+Time         : 0.010s (Solving: 0.00s 1st Model: 0.00s Unsat: 0.00s)
+CPU Time     : 0.016s

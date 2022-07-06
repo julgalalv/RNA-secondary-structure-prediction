@@ -5,6 +5,8 @@ import argparse
 import platform
 import subprocess
 
+from matplotlib.pyplot import close
+
 '''
 This program predicts the secondary structure of a RNA sequence
 using CLINGO and maximizing two possible Energy functions. It also generates an image 
@@ -45,6 +47,8 @@ CLINGO_OUTPUT_DIR = os.path.join(CLINGO_DIR,'output')                   # Clingo
 CLINGO_INPUT_DIR =  os.path.join(CLINGO_DIR,'input')                    # Clingo input directory
 CLINGO_INPUT_FILE = os.path.join(CLINGO_INPUT_DIR,'rna_ss_input.lp')    # Clingo program input file (runtime generated)
 
+STATS_DIR = 'stats_output'                                              # Clingo prediction information and stats about the sequence file dirrectory
+
 # original jar from http://varna.lri.fr/index.php?lang=en&page=downloads&css=varna
 VARNA_DIR = 'VARNA'                                             # VARNA file directory
 VARNA_JAR = os.path.join(VARNA_DIR,'VARNAv3-93.jar')            # VARNA jar path
@@ -70,7 +74,7 @@ def main():
     parser.add_argument('sequence', type=str,
                          help='RNA sequence [example: ACCGUA]')
     parser.add_argument('energy', type=int,
-                        help='energy function used [possible values 1, 2]')
+                        help='energy function used [possible values 1, 2 and 0]. Value 0 uses the original E2 function of the outhors')
 
     args = parser.parse_args() 
 
@@ -81,9 +85,10 @@ def main():
         sys.exit()
     
     ENERGY_FUNC = args.energy
-    if ENERGY_FUNC not in [1,2]: 
-        print('Invalid energy function. Energy must be 1 or 2.')
+    if ENERGY_FUNC not in [0,1,2]: 
+        print('Invalid energy function. Energy must be 0, 1 or 2.')
         sys.exit()
+    if ENERGY_FUNC == 0 : ENERGY_FUNC = '2_0'
     ENERGY_FILE = ENERGY_FILE.format(ENERGY_FUNC)
 
     print('='*CONSOLE_LINE_LENGTH_)
@@ -91,30 +96,26 @@ def main():
     print('CLINGO EXECUTABLE RELATIVE PATH: ',CLINGO_EXE)
     print('='*CONSOLE_LINE_LENGTH_,'\n')
 
+    ## Main pipeline
     # Generates input file from input RNA sequence
     generate_input_file()
 
     # Executes Clingo program
     run_clingo()
 
+    # parse the prediction
+    pairing_dict, connections = read_clingo_output()
+
+    # print stats
+    statistics(pairing_dict,connections)
+
     # Executes VARNA applet to generate image if java is installed
     if is_java_installed():
-        generate_image()
+        generate_image(connections)
+    
+    print('FINISHED. EXITING PROGRAM.')
 
-def is_java_installed():
-    '''
-    Check if Java is installed to avoid executing VARNA jar if not.
-    '''
-    version_check = subprocess.check_output(['java', '-version'], stderr=subprocess.STDOUT).decode("utf-8") 
-    pattern = '\"(\d+\.\d+).*\"'
-    version_search = re.search(pattern, version_check).groups()
-    if len(version_search) != 0:
-        version = version_search[0]
-        print('USING JAVA VERSION: ',version)
-        return True
-    else:
-        print('Java not found. Image will not be generated.')
-        return False
+
 
 def generate_input_file():
     '''
@@ -164,20 +165,20 @@ def run_clingo():
     # print output
     print('='*CONSOLE_LINE_LENGTH_)
     print(clingo_output,'\n')
-    
+    print('CLINGO EXECUTION DONE...\n')
 
-def generate_image():
+
+def read_clingo_output():
     '''
-    Generate image from clingo output file using VARNA applet. To do so, we extract the pairing predicates
-    from the clingo output file and construct the connection string needed by VARNA. This string has the length
-    of the RNA sequence and a link is represented by parenthesis '(' for the first appearing base and ')'
-    for the other one. Non paired bases are represented by dots '.'
+    Extract the pairing predicates from the clingo output file and construct the connection string
+    needed by VARNA. This string has the length of the RNA sequence and a link is represented by 
+    parenthesis '(' for the first appearing base and ')' for the other one. Non paired bases are 
+    represented by dots '.'.
 
     Example: 'ACCGA' with pairing(2,4) is represented by '.(.).'
     '''
+    global C1
 
-    # Instance of the connection using dots
-    connections = list('.'*len(SEQUENCE))
     # read Clingo output file
     with open(os.path.join(CLINGO_OUTPUT_DIR,CLINGO_OUTPUT_FILE),'r',encoding='utf-8') as clingo_out:
         content = clingo_out.read()
@@ -187,6 +188,9 @@ def generate_image():
         response = re.findall(r'(?<=Answer: {}\n)[\S\s]*(?=OPTIMUM FOUND)'.format(models[0]), content)
         # Extract pairing predicates from optimum model output
         pairings = re.findall(r'pairing\(\d+,\d+\)',response[0])
+        # Extract best c1 param for e2
+        c1_predicate = re.findall(r'c1\(\d+\)',response[0])
+        C1 = int(re.findall(r'\d+',c1_predicate[0])[1]) if len(c1_predicate) != 0 else None
     clingo_out.close()
 
     # dictionary of the pairings (only once per pairing)
@@ -196,7 +200,9 @@ def generate_image():
         n1 = int(indexes[0])
         n2 = int(indexes[1])
         if n1 < n2: pairing_dict[n1] = n2 # Add to dictionary 
-
+    
+    # Instance of the connection using dots
+    connections = list('.'*len(SEQUENCE))
     # Substitution in connection list
     for k,v in pairing_dict.items():
         connections[k-1] = '('
@@ -205,14 +211,94 @@ def generate_image():
     # connection to string
     connections = ''.join(connections)
 
-    print('='*CONSOLE_LINE_LENGTH_)
-    print('PAIRING DICTIONARY:      ', pairing_dict)
-    print('VARNA SEQUENCE STRING:   ', SEQUENCE)
-    print('VARNA CONNECTION STRING: ', connections)
-    print('='*CONSOLE_LINE_LENGTH_, '\n')
+    return pairing_dict, connections
 
-    # print stats
-    print_statistics(pairing_dict)
+def statistics(pairing_dictionary,connections):
+    """
+    Generates information about the sequence and the predicted
+    secondary structure into a file and prints it.
+    """
+    sequence_dict = dict(enumerate(SEQUENCE, start=1))
+    len_seq = len(SEQUENCE)                 # sequence length
+    pairings = len(pairing_dictionary)      # number of pairings
+    paired_bases = pairings * 2             # number of paired bases
+    cg_pairings = 0                         # number of CG pairings
+    au_pairings = 0                         # number of CG pairings
+    gu_pairings = 0                         # number of CG pairings
+
+    cg_prop = 0                             # proportion of CG pairings 
+    au_prop = 0                             # proportion of AU pairings 
+    gu_prop = 0                             # proportion of GU pairings 
+    
+    # Count of pairing types
+    for k,v in pairing_dictionary.items():
+        base_1 = sequence_dict[k]
+        base_2 = sequence_dict[v]
+        pairing = set([base_1,base_2])
+        if pairing == set(['C','G']): cg_pairings += 1  
+        if pairing == set(['A','U']): au_pairings += 1  
+        if pairing == set(['G','U']): gu_pairings += 1 
+
+    # proportions = number of pairings of type X / total number of pairings
+    if pairings != 0: 
+        cg_prop = cg_pairings / pairings
+        au_prop = au_pairings / pairings
+        gu_prop = gu_pairings / pairings
+
+    stats = {
+        'SEQUENCE LENGTH:':[len_seq,'-'],
+        'NUM. PAIRINGS:':[pairings,'-'],
+        'NUM. PAIRED BASES:':[paired_bases,'-'],
+        'NUM. CG PAIRINGS:':[cg_pairings,'-'],
+        'NUM. AU PAIRINGS:':[au_pairings,'-'],
+        'NUM. GU PAIRINGS:':[gu_pairings,'-'],
+        'PROP.  CG PAIRINGS:':[cg_prop, '0.53'],
+        'PROP.  AU PAIRINGS:':[au_prop, '0.35'],
+        'PROP.  GU PAIRINGS:':[gu_prop, '0.12'],
+
+    }
+    if C1 is not None: stats['BEST C1 FOUND:'] = [C1, '-']
+
+    # File content
+    content = 'STATS OF SEQUENCE: E{} - {}\n'.format(ENERGY_FUNC,SEQUENCE) 
+    content += '='*CONSOLE_LINE_LENGTH_+ '\n'
+
+    content += "{:<40} {:<40} \n".format('PAIRING DICTIONARY:', str(pairing_dictionary)) 
+    content += "{:<40} {:<40} \n".format('SEQUENCE STRING:', SEQUENCE) 
+    content += "{:<40} {:<40} \n".format('PARENTHESIS AND DOTS CONNECTION STRING:', connections) 
+    content += '='*CONSOLE_LINE_LENGTH_+ '\n'
+    content += "{:<20} {:<20} {:<20}\n".format('', 'PREDICTED', 'EXPECTED') 
+    for k, v in stats.items():
+        pred, expected = v
+        content += "{:<20} {:<20.2f} {:<20}\n".format(k, pred, expected)
+    print(content)
+    print('='*CONSOLE_LINE_LENGTH_,'\n')
+
+    # write to file
+    STATS_FILE = os.path.join(STATS_DIR, "STATS_{}_E{}.txt".format(SEQUENCE,ENERGY_FUNC))
+    with open(STATS_FILE, 'w') as stat_file:
+        stat_file.write(content)
+    stat_file.close()
+
+def is_java_installed():
+    '''
+    Check if Java is installed to avoid executing VARNA jar if not.
+    '''
+    version_check = subprocess.check_output(['java', '-version'], stderr=subprocess.STDOUT).decode("utf-8") 
+    pattern = '\"(\d+\.\d+).*\"'
+    version_search = re.search(pattern, version_check).groups()
+    if len(version_search) != 0:
+        version = version_search[0]
+        print('USING JAVA VERSION: ',version,'\n')
+        return True
+    else:
+        print('Java not found. Image will not be generated.')
+        return False
+        
+def generate_image(connections):
+    '''
+    Generate image from clingo output file using VARNA applet. 
+    '''
 
     # image output name and path
     image_name = SEQUENCE+'_'+str(ENERGY_FUNC)+'.png'
@@ -224,51 +310,6 @@ def generate_image():
     params = ' -sequenceDBN {} -structureDBN {} -title {} -o {}'.format(SEQUENCE,connections,image_title,image_file)
     # VARNA applet run
     os.system(base_cmd + params)
-
-def print_statistics(pairing_dictionary):
-    """
-    Prints information about the sequence and the predicted
-    secondary structure
-    """
-    sequence_dict = dict(enumerate(SEQUENCE, start=1))
-    len_seq = len(SEQUENCE)
-    pairings = len(pairing_dictionary)
-    paired_bases = pairings * 2
-    cg_pairings = 0
-    au_pairings = 0
-    gu_pairings = 0
-
-    for k,v in pairing_dictionary.items():
-        base_1 = sequence_dict[k]
-        base_2 = sequence_dict[v]
-        pairing = set([base_1,base_2])
-        if pairing == set(['C','G']): cg_pairings += 1  
-        if pairing == set(['A','U']): au_pairings += 1  
-        if pairing == set(['G','U']): gu_pairings += 1  
-    cg_prop = cg_pairings / pairings
-    au_prop = au_pairings / pairings
-    gu_prop = gu_pairings / pairings
-
-    stats = {
-        'SEQUENCE LENGTH:':[len_seq,'-'],
-        'NUM. PAIRINGS:':[pairings,'-'],
-        'NUM. PAIRED BASES:':[paired_bases,'-'],
-        'NUM. CG PAIRINGS:':[cg_pairings,'-'],
-        'NUM. AU PAIRINGS:':[au_pairings,'-'],
-        'NUM. GU PAIRINGS:':[gu_pairings,'-'],
-        'PROP. CG PAIRINGS:':[cg_prop, '0.53'],
-        'PROP. AU PAIRINGS:':[au_prop, '0.35'],
-        'PROP. GU PAIRINGS:':[gu_prop, '0.12'],
-
-    }
-    (print('STATS OF SEQUENCE: E{} - {}'.format(ENERGY_FUNC,SEQUENCE)))
-    print('='*CONSOLE_LINE_LENGTH_)
-    print ("{:<20} {:<20} {:<20}".format('', 'PREDICTED', 'EXPECTED'))
-    for k, v in stats.items():
-        pred, expected = v
-        print ("{:<20} {:<20.2f} {:<20}".format(k, pred, expected))
-    print('='*CONSOLE_LINE_LENGTH_,'\n')
-
 
 if __name__ == '__main__':
     main()

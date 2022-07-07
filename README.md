@@ -8,7 +8,6 @@ More information about VARNA applet in
 * http://varna.lri.fr/index.php?lang=en&page=home&css=varna
 
 
-
 Based on 'Exploring Life through Logic Programming: Logic Programming in Bioinformatics -  RNA secondary  structure prediction' available in 
  
  * https://computerscience.nmsu.edu/_files/documents/TR-CS-NMSU-2014-10-24.pdf
@@ -25,7 +24,7 @@ Based on 'Exploring Life through Logic Programming: Logic Programming in Bioinfo
   * **clingo**: folder containing all clingo facilities, codes and files.
     * **bin**: folder containing clingo binaries.
     * **input**: folder containing the input file of the program.
-        * **rna_ss_input.lp**: input file. RNA sequences must be represented as facts of the form seq(id, base)
+        * **rna_ss_input.lp**: input file. RNA sequences must be represented as facts of the form $seq(id, base)$.
     * **output**: folder containing output files of clingo executions when using the python script. 
     * **rna_ss_prediction_base.lp**: clingo lp core file. Computes the possible secondary structure models given the sequence in **rna_ss_input.lp**.
     * **rna_ss_prediction_E1**: given the models in **rna_ss_prediction_base.lp**, maximizes the number of pairings (Nussinov Energy cost Function). 
@@ -33,16 +32,16 @@ Based on 'Exploring Life through Logic Programming: Logic Programming in Bioinfo
      * **rna_ss_prediction_E2_0**: given the models in **rna_ss_prediction_base.lp**, minimizes $E_2$ cost function in its original implementation found in the reference paper.
 
  * **VARNA**: folder containing the VARNA applet jar.
- * **generated_images**: folder containing generated images when using the python script
+ * **generated_images**: folder containing generated images when using the python script.
  * **stats_output**: folder containing report files about predictions when using the python script.
 
  # Python script usage
 This scripts has two mandatory parameters:
- * *sequence*: RNA sequence in text form (Example: AGUCCA)
+ * *sequence*: RNA sequence in text form (Example: AGUCCA).
  * *energy*: integer to specify which cost function will be used. 
-    * if 0: uses the original implementation of $E_2$ found in  **rna_ss_prediction_E2_0**
-    * if 1: uses Nussinov's cost function $E_1$ found in  **rna_ss_prediction_E1**
-    * if 2: uses my implementation of $E_2$ found in  **rna_ss_prediction_E2**
+    * if 0: uses the original implementation of $E_2$ found in  **rna_ss_prediction_E2_0**.
+    * if 1: uses Nussinov's cost function $E_1$ found in  **rna_ss_prediction_E1**.
+    * if 2: uses my implementation of $E_2$ found in  **rna_ss_prediction_E2**.
 
 If needed, type the following for help.
 
@@ -62,7 +61,7 @@ optional arguments:
 ```
 
 ## Notes
- * The script automatically detects your platform and runs the version of clingo you require, so you don't have to worry about the bin folder or which clingo executable you have to use.
+ * The script automatically detects your platform and runs the version of clingo 5.4 you require, so you don't have to worry about the bin folder or which clingo executable you have to use. Clingo releases can be found in https://github.com/potassco/clingo/releases.
  * The script automatically checks if java is installed. If not, VARNA applet is not executed and no image is generated.
 
 ## Pipeline
@@ -70,8 +69,8 @@ To understand the execution of the scripts and the generated files let's see an 
 
     python rna_prediction.py ACCUGGUAUCGACA 2
 
- 1. The script generates the input file **clingo\input\rna_ss_input.lp**
- 2. Runs **rna_ss_prediction_E2** (in this case) and saves the output in **clingo\output\rna_ss_prediction_E2_ACCUGGUAUCGACA.txt**
+ 1. The script generates the input file **clingo\input\rna_ss_input.lp**.
+ 2. Runs **rna_ss_prediction_E2** (in this case) and saves the output in **clingo\output\rna_ss_prediction_E2_ACCUGGUAUCGACA.txt**.
 
  ```
 clingo version 5.4.0
@@ -95,7 +94,7 @@ Calls        : 1
 Time         : 0.441s (Solving: 0.14s 1st Model: 0.03s Unsat: 0.05s)
 CPU Time     : 0.438s
  ```
- 3. Reads the previous output file and parse the result to generate a report and the input needed for VARNA applet. This file is generated in **stats_output\STATS_ACCUGGUAUCGACA_E2.txt**
+ 3. Reads the previous output file and parse the result to generate a report and the input needed for VARNA applet. This file is generated in **stats_output\STATS_ACCUGGUAUCGACA_E2.txt**.
 
  ```
  STATS OF SEQUENCE: E2 - ACCUGGUAUCGACA
@@ -117,7 +116,7 @@ PROP.  GU PAIRINGS:  0.00                 0.12
 BEST C1 FOUND:       70.00                -      
  ```
 
- 4. If java is installed, runs VARNA applet to generate the image of the structure in **generated_images\ACCUGGUAUCGACA_2.png**
+ 4. If java is installed, runs VARNA applet to generate the image of the structure in **generated_images\ACCUGGUAUCGACA_2.png**.
 
 <p align="center">
  <img src="misc/readme_image_example.png"
@@ -129,7 +128,7 @@ BEST C1 FOUND:       70.00                -
 
 I have found several issues with the original implementation of $E_2$ cost function in the reference paper:
  * Unbalanced units: the weigth $c_1$ is not multiplied by 100 like the others.
- * Incoherent usage of $|P|$: confusion between $|P|$ (number of paired bases) and $|P|/2$ (number of pairings).
+ * Incoherent usage of |P| : confusion between |P| (number of paired bases) and |P|/2 (number of pairings).
  * Maximization of cost function instead of minimazing it.
 
 After that, I have tried the following simple cost function to minimize:

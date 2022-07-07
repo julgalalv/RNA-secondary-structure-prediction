@@ -6,7 +6,7 @@ Given a RNA sequence in "input/rna_ss_input.lp" encoded in predicates
 of the form seq(sequence_index,sequence_base), this program minimizes
 the following energy function:
 
-	E2 = (n-c1|P|) + |AU-0.35|P|/2| + |CG-0.53|P|/2|
+	E2 = (c1*n-|P|) + |AU-0.35|P|/2| + |CG-0.53|P|/2|
 
 where |P| is the number of contacts (number of bases with pairings
 , the same as 2 * number of pairings) calculated in 

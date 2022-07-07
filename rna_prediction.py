@@ -74,7 +74,7 @@ def main():
     parser.add_argument('sequence', type=str,
                          help='RNA sequence [example: ACCGUA]')
     parser.add_argument('energy', type=int,
-                        help='energy function used [possible values 1, 2 and 0]. Value 0 uses the original E2 function of the outhors')
+                        help='energy function used [possible values 1, 2 and 0]. Value 0 uses the original E2 function of the authors')
 
     args = parser.parse_args() 
 
